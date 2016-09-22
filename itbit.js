@@ -156,8 +156,8 @@ function executeRequest(options, callback)
     }
     else if (body && body.code)
     {
-      error = new VError('%s failed %s. Error code %s, description: %s', functionName,
-          requestDesc, body.code, body.description);
+      error = new VError('%s failed %s. Error code %s, description: %s, extra: %s', functionName,
+          requestDesc, body.code, body.description, JSON.stringify(_.omit(body, 'code', 'description')));
       error.name = body.code;
     }
     // the following is to trap the JSON response
